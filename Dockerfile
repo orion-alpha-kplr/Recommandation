@@ -4,6 +4,9 @@ FROM apache/spark:3.4.0
 # Définir le répertoire de travail de l'application
 WORKDIR /app
 
+COPY ./app /app 
+#copie dans l'image docker 
+
 COPY ./requirements.txt  /app/requirements.txt
 
 # Installer les dépendances requises
@@ -16,7 +19,7 @@ COPY . .
 #ENV FLASK_APP app.py
 
 # Exposer le port sur lequel l'application Flask sera disponible
-EXPOSE 8080
+EXPOSE 5000
 
 # Commande pour exécuter l'application Flask
 CMD ["spark-submit", "server.py", "ml-latest/movies.csv", "ml-latest/ratings.csv"]
